@@ -1,2 +1,139 @@
 // Rules in this file will be imported (by LESS) into the Custom.less file
 // see: http://lesscss.org/#-importing
+
+// Mixin to generate URLs, e.g.: .rapStatus('200')
+@rapPath: 'http://www.httpstatusrappers.com/images/';
+.rapStatus(@statusImg: '') {
+  background-image: e(%('url(%s%s.png)', @rapPath, @statusImg)) !important;
+}
+
+#-webkit-web-inspector {
+  .status-column {
+    overflow: visible !important;
+  
+    > [title] {
+      overflow: visible !important;
+      position: relative !important;
+    }
+    
+    > [title]::before {
+      border-color: transparent transparent #000 transparent !important;
+      border-style: solid !important;
+      border-width: 10px !important;
+      bottom: -10px !important;
+      content: ' ' !important;
+      height: 0 !important;
+      left: 10px !important;
+      opacity: 0 !important;
+      position: absolute !important;
+      width: 0 !important;
+    }
+    
+    > [title]::after {
+      background: #000 0 0 no-repeat scroll !important;
+      background-image: none !important;
+      background-size: contain !important;
+      bottom: -260px !important;
+      content: ' ' !important;
+      display: block !important;
+      height: 250px !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      position: absolute !important;
+      transition: all 0.5s ease-out !important;
+      width: 325px !important;
+      z-index: 1 !important;
+    }
+    
+    > [title]:hover::after,
+    > [title]:hover::before {
+      opacity: 1 !important;
+    }
+    
+    [title^="100 "]::after { .rapStatus('100') }
+    [title^="101 "]::after { .rapStatus('101') }
+    [title^="200 "]::after { .rapStatus('200') }
+    [title^="201 "]::after { .rapStatus('201') }
+    [title^="202 "]::after { .rapStatus('202') }
+    [title^="203 "]::after { .rapStatus('203') }
+    // 204: shows only "(cancelled)"
+    [title^="204 "]::after { .rapStatus('204') }
+    // 205: shows only "(cancelled)"
+    [title^="206 "]::after { .rapStatus('206') }
+    [title^="300 "]::after { .rapStatus('300') }
+    [title^="301 "]::after { .rapStatus('301') }
+    [title^="302 "]::after { .rapStatus('302') }
+    [title^="303 "]::after { .rapStatus('303') }
+    [title^="304 "]::after { .rapStatus('304') }
+    // 305: [title^="305 "]
+    // 306: [title^="306 "]
+    [title^="400 "]::after { .rapStatus('400') }
+    [title^="401 "]::after { .rapStatus('401') }
+    [title^="402 "]::after { .rapStatus('402') }
+    // 403: [title^="403 "]
+    [title^="404 "]::after { .rapStatus('404') }
+    // 405: [title="405 "]
+    [title^="406 "]::after { .rapStatus('406') }
+    // 407: [title^="407 "]
+    // 408: [title^="408 "]
+    // 409: [title^="409 "]
+    [title^="410 "]::after { .rapStatus('410') }
+    // 411: [title^="411 "]
+    // 412: [title^="412 "]
+    [title^="413 "]::after { .rapStatus('413') }
+    // 414: [title^="414 "]
+    // 415: [title^="415 "]
+    // 416: [title^="416 "]
+    // 417: [title^="417 "]
+    // 418: [title^="418 "]
+    [title^="420 "]::after { .rapStatus('420') }
+    [title^="500 "]::after { .rapStatus('500') }
+    // 501: [title^="501 "]
+    [title^="502 "]::after { .rapStatus('502') }
+    // 503: [title^="503 "]
+    [title^="504 "]::after { .rapStatus('504') }
+    // 505: [title^="505 "]
+    
+    // suppress the popups (and arrows) without images:
+    [title="Success"]::after,
+    [title="Success"]::before,
+    [title="(cancelled)"]::after,
+    [title="(cancelled)"]::before,
+    [title="(pending)"]::after,
+    [title="(pending)"]::before,
+    [title^="305 "]::after,
+    [title^="305 "]::before,
+    [title^="306 "]::after,
+    [title^="306 "]::before,
+    [title^="403 "]::after,
+    [title^="403 "]::before,
+    [title^="405 "]::after,
+    [title^="405 "]::before,
+    [title^="407 "]::after,
+    [title^="407 "]::before,
+    [title^="409 "]::after,
+    [title^="409 "]::before,
+    [title^="411 "]::after,
+    [title^="411 "]::before,
+    [title^="412 "]::after,
+    [title^="412 "]::before,
+    [title^="414 "]::after,
+    [title^="414 "]::before,
+    [title^="415 "]::after,
+    [title^="415 "]::before,
+    [title^="416 "]::after,
+    [title^="416 "]::before,
+    [title^="417 "]::after,
+    [title^="417 "]::before,
+    [title^="418 "]::after,
+    [title^="418 "]::before,
+    [title^="501 "]::after,
+    [title^="501 "]::before,
+    [title^="503 "]::after,
+    [title^="503 "]::before,
+    [title^="505 "]::after
+    [title^="505 "]::before, {
+      display: none !important;
+    }
+  }
+}
